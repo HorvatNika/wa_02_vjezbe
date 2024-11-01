@@ -3,8 +3,11 @@ const path = require("path");
 const app = express();
 const PORT = 3003; 
 
+<<<<<<< HEAD
 app.use(express.json());
 
+=======
+>>>>>>> 69c2819ab83c8422d65d9287743844956acea325
 app.listen(PORT, function() {
     console.log(`Server je pokrenut na http://localhost:${PORT}`);
 }); 
@@ -50,6 +53,7 @@ app.get('/pizze/:id', (req, res) => {
     } else {
         res.json({message: 'Pizza s traženim ID-em ne postoji.'});
     }
+<<<<<<< HEAD
 });
 
 /*app.post('/naruci', (req, res) => {
@@ -73,3 +77,6 @@ app.post('/naruci', (req, res) => {
     res.send(`Vaša narudžba za ${narudzba.naziv} ID: ${narudzba.id}, cijena: ${narudzba.cijena} je uspješno zaprimljena!`
     + `\nDetalji narudžbe: Prezime: ${narudzba.prezime}, Adresa: ${narudzba.adresa}, Broj telefona: ${narudzba.broj_telefona}`);
 });
+=======
+});
+>>>>>>> 69c2819ab83c8422d65d9287743844956acea325
