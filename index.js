@@ -3,6 +3,8 @@ const path = require("path");
 const app = express();
 const PORT = 3003; 
 
+app.use(express.json());
+
 app.listen(PORT, function() {
     console.log(`Server je pokrenut na http://localhost:${PORT}`);
 }); 
@@ -48,4 +50,26 @@ app.get('/pizze/:id', (req, res) => {
     } else {
         res.json({message: 'Pizza s traženim ID-em ne postoji.'});
     }
+});
+
+/*app.post('/naruci', (req, res) => {
+    const narudzba = req.body;
+
+    console.log('Primljeni podaci: ', narudzba);
+
+    res.send(`Vaša narudžba je uspješno zaprimljena!`);
+});*/
+
+app.post('/naruci', (req, res) => {
+    const narudzba = req.body;
+    const kljucevi = Object.keys(narudzba); //jesu li svi ključevi prisutni
+
+    if (!(kljucevi.includes('id') && kljucevi.includes('naziv') && kljucevi.includes('cijena') &&
+          kljucevi.includes('prezime') && kljucevi.includes('adresa') && kljucevi.includes('broj_telefona'))) {
+        res.send('Niste poslali sve potrebne podatke za narudžbu!');
+        return;
+    }
+
+    res.send(`Vaša narudžba za ${narudzba.naziv} ID: ${narudzba.id}, cijena: ${narudzba.cijena} je uspješno zaprimljena!`
+    + `\nDetalji narudžbe: Prezime: ${narudzba.prezime}, Adresa: ${narudzba.adresa}, Broj telefona: ${narudzba.broj_telefona}`);
 });
